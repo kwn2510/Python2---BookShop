@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Sửa Thông Tin Nhân Viên</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='edit_employee.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <a href="{{ url_for('showAllEmployee') }}" class="back-link">Quay lại</a>
+            <h1>Sửa Thông Tin Nhân Viên</h1>
+
+            <form method="POST" action="{{ url_for('edit_employee', employee_id=employee.employee_id) }}">
+                <div class="form-group">
+                    <label for="employee_name">Tên Nhân Viên:</label>
+                    <input type="text" id="employee_name" name="employee_name" value="{{ employee.employee_name }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Giới tính:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="Nam" {% if employee.gender == "Nam" %}selected{% endif %}>Nam</option>
+                        <option value="Nữ" {% if employee.gender == "Nữ" %}selected{% endif %}>Nữ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="birthday">Ngày Sinh:</label>
+                    <input type="date" id="birthday" name="birthday" value="{{ employee.birthday }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Điện Thoại:</label>
+                    <input type="text" id="phone" name="phone" value="{{ employee.phone }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" value="{{ employee.email }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Địa chỉ:</label>
+                    <input type="text" id="address" name="address" value="{{ employee.address }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="position">Vị trí:</label>
+                    <select id="position" name="position" required>
+                        <option value="Quản lý" {% if employee.position == "Quản lý" %}selected{% endif %}>Quản lý</option>
+                        <option value="Nhân viên" {% if employee.position == "Nhân viên" %}selected{% endif %}>Nhân viên</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="salary">Lương:</label>
+                    <input type="number" id="salary" name="salary" step="0.01" min="0" value="{{ employee.salary }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu:</label>
+                    <input type="password" id="password" name="password" value="{{ employee.password }}" required>
+                </div>
+
+                <button type="submit">Cập Nhật</button>
+            </form>
+        </div>
+    </body>
+</html>

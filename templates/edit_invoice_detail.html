@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Chi Tiết Hóa Đơn</title>
+    <script>
+        // Hàm tính tổng tiền
+        function calculateTotal() {
+            const costBook = parseFloat(document.getElementById("cost_book").value) || 0;
+            const quantity = parseInt(document.getElementById("quantity").value) || 0;
+            const total = costBook * quantity;
+            document.getElementById("total").value = total.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Sửa Chi Tiết Hóa Đơn</h1>
+    <form method="POST">
+        <label for="book_id">Mã sách:</label>
+        <input type="number" id="book_id" name="book_id" value="{{ invoice_detail.book.book_id }}" required readonly><br><br>
+
+        <label for="quantity">Số lượng:</label>
+        <input type="number" id="quantity" name="quantity" value="{{ invoice_detail.quantity }}" oninput="calculateTotal()" required><br><br>
+
+        <label for="cost_book">Giá sách:</label>
+        <input type="number" id="cost_book" name="cost_book" value="{{ invoice_detail.cost_book }}" oninput="calculateTotal()" required><br><br>
+
+        <label for="total">Tổng:</label>
+        <input type="number" id="total" name="total" value="{{ invoice_detail.quantity * invoice_detail.cost_book }}" disabled><br><br>
+
+        <button type="submit">Cập Nhật</button>
+    </form>
+    <a href="{{ url_for('showAllInvoiceDetails') }}">Quay lại</a>
+</body>
+</html>

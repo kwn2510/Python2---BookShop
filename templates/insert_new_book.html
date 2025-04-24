@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thêm Sách Mới</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='insert.css') }}">
+
+</head>
+<body>
+    <header>
+        <div class="auth-buttons">
+            <a href="/logout" class="btn">Đăng xuất</a>
+        </div>
+    </header>
+    <a href="{{ url_for('select') }}" class="back-link">← Quay lại</a>
+    <div class="container">
+        <h1 style="color: rgb(3, 29, 159);">Thêm Sách Mới</h1>
+        <form method="POST" action="{{ url_for('addNewBookCommit') }}">
+            <div>
+                <label for="book_id">Mã Sách:</label>
+                <input type="number" id="book_id" name="book_id" min="100" required>
+            </div><br>
+            <div>
+                <label for="book_name">Tên Sách:</label>
+                <input type="text" id="book_name" name="book_name" required>
+            </div><br>
+            <div>
+                <label for="authors">Tác Giả:</label>
+                <input type="text" id="authors" name="authors" required>
+            </div><br>
+            <div>
+                <label for="publishing_year">Năm Xuất Bản:</label>
+                <input type="number" id="publishing_year" name="publishing_year" min="1900" max="2100" required>
+            </div><br>
+            <div>
+                <label for="kind_of_book">Thể Loại:</label>
+                <select id="kind_of_book" name="kind_of_book" required>
+                    <option value="" disabled selected>Chọn thể loại sách</option>
+                    {% for kind in kinds_of_book %}
+                        <option value="{{ kind.id }}">{{ kind.name }}</option>
+                    {% endfor %}
+                </select>
+            </div><br>
+            <div>
+                <label for="cost">Giá:</label>
+                <input type="number" id="cost" name="cost" step="0.01" min="0" required>
+            </div><br>
+            <div>
+                <label for="quantity">Số Lượng:</label>
+                <input type="number" id="quantity" name="quantity" min="1" required>
+            </div><br>
+            <button type="submit">Thêm Sách</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thêm Kệ Sách Mới</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='insert.css') }}">
+</head>
+<body>
+    <header>
+        <div class="auth-buttons">
+            <a href="/logout" class="btn">Đăng xuất</a>
+        </div>
+    </header>
+    <a href="{{ url_for('select') }}" class="back-link">← Quay lại</a>
+    <div class="container">
+        <h1 style="color: rgb(3, 29, 159);">Thêm Kệ Sách Mới</h1>
+        <form method="GET" action="{{ url_for('addNewBookShelfCommit') }}">
+            <div>
+                <label for="number">Số Kệ:</label>
+                <input type="number" id="number" name="number" min="1" required>
+            </div>
+            <div>
+                <label for="location">Vị trí:</label>
+                <select id="location" name="location" required>
+                    <option value="" disabled selected>Chọn vị trí</option>
+                    <option value="Tầng 1">Tầng 1</option>
+                    <option value="Tầng 2">Tầng 2</option>
+                    <option value="Tầng 3">Tầng 3</option>
+                </select>
+            </div>
+            <button type="submit">Thêm Kệ Sách</button>
+        </form>
+    </div>
+</body>
+</html>

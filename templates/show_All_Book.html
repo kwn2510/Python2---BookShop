@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+    <title>Thông tin Sách</title>
+</head>
+<body>
+    <a href="{{ url_for('select') }}">Quay lại</a>
+    <h1>Thông Tin Sách</h1>
+    <table border="2">
+        <tr>
+            <th>Book ID</th>
+            <th>Book Name</th>
+            <th>Authors</th>
+            <th>Publishing Year</th>
+            <th>Kind Of Book</th>
+            <th>Cost</th>
+            <th>Quantity</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.book_id }}</td>
+            <td>{{ book.book_name }}</td>
+            <td>{{ book.authors }}</td>
+            <td>{{ book.publishing_year }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.cost }}</td>
+            <td>{{ book.quantity }}</td>
+            <td>
+                <a href="{{ url_for('edit_book', book_id=book.book_id) }}">Sửa</a>
+            </td>
+            <td>
+                <form method="GET" action="{{ url_for('delete_book', book_id=book.book_id) }}" onsubmit="return confirm('Bạn có chắc chắn muốn xóa sách này?');">
+                    <button type="submit">Xóa</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống Kê Lượng Sách Bán Ra</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+<body>
+    <h1>Thống Kê Lượng Sách Bán Ra</h1>
+    <table border="1">
+        <tr>
+            <th>Mã Sách</th>
+            <th>Tên Sách</th>
+            <th>Tổng Số Lượng Bán</th>
+        </tr>
+        {% for stat in statistics %}
+        <tr>
+            <td>{{ stat.book_id }}</td>
+            <td>{{ stat.book_name }}</td>
+            <td>{{ stat.total_quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('select') }}">Quay lại Trang Chủ</a>
+</body>
+</html>

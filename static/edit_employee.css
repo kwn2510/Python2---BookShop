@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f2ff; /* Xanh dương nhạt */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Chiều rộng tự động điều chỉnh theo màn hình */
+    max-width: 500px; /* Giới hạn chiều rộng tối đa */
+    text-align: left;
+    overflow-y: auto; /* Thêm thanh cuộn dọc nếu nội dung quá dài */
+    max-height: 90vh; /* Giới hạn chiều cao tối đa */
+}
+
+h1 {
+    text-align: center;
+    color: #003d80; /* Xanh dương đậm */
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #003d80;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #003d80;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #003d80;
+    text-decoration: none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

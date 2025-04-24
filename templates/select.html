@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chọn Tính Năng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #9bc2ec;
+            color: rgb(250, 250, 250);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: rgb(255, 255, 255);
+            background-color: #102b81;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .auth-buttons a:hover {
+            background-color: #003d80;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 20px 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 10px 20px;
+            margin: 0;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        ul h1 {
+            font-size: 16px;
+            color: #444;
+            margin: 0;
+            flex: 1;
+        }
+
+        ul li {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: #3d638c;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        ul li a:hover {
+            background-color: #bad9fb;
+            color: white;
+        }
+    .search-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 20px 0;
+        gap: 10px;
+    }
+
+    #search-input {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    #search-button {
+        padding: 10px 20px;
+        background-color: #bad9fb;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    #search-button:hover {
+        background-color: #bad9fb;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div>Quản Lý Hệ Thống</div>
+        <div class="auth-buttons">
+            <a href="/logout">Đăng xuất</a>
+        </div>
+    </header>
+
+    <h1>Chọn Tính Năng</h1>
+    <h1>Welcome, {{name}}</h1>
+    <p>Position: {{ position }}</p>
+    <div class="search-container">
+        <form method="POST" action="{{ url_for('search') }}">
+            <input type="text" placeholder="Tìm kiếm..." id="search-input" name="search_query">
+            <button type="submit" id="search-button">Tìm kiếm</button>
+        </form>
+    </div><br><br>
+
+    <div class="container">
+        {% if position == "quản lý" %}
+        <ul>
+            <h1>Quản lý khách hàng</h1>
+            <li><a href="{{ url_for('addNewCustomer') }}">Thêm</a></li>
+            <li><a href="{{ url_for('showAllCustomer') }}">Danh sách</a></li>
+        </ul>
+
+        <ul>
+            <h1>Quản lý nhân viên</h1>
+            <li><a href="{{ url_for('addNewEmployee') }}">Thêm</a></li>
+            <li><a href="{{ url_for('showAllEmployee') }}">Danh sách</a></li>
+        </ul>
+
+        <ul>
+            <h1>Quản lý Kệ Sách</h1>
+            <li><a href="{{ url_for('addNewBookShelf') }}">Thêm</a></li>
+            <li><a href="{{ url_for('showAllBookShelf') }}">Danh sách</a></li>
+        </ul>
+
+        <ul>
+            <h1>Quản lý thể loại sách</h1>
+            <li><a href="{{ url_for('addNewKindOfBook') }}">Thêm</a></li>
+            <li><a href="{{ url_for('showAllKindofBook') }}">Danh sách</a></li>
+        </ul>
+        {% endif %}
+
+        <!-- Chức năng chung cho cả nhân viên và quản lý -->
+        <ul>
+            <h1>Quản lý sách</h1>
+            <li><a href="{{ url_for('addNewBook') }}">Thêm</a></li>
+            <li><a href="{{ url_for('showAllBook') }}">Danh sách</a></li>
+            <li><a href="{{ url_for('statistics_books_sold') }}">Thống kế số lượng sách đã bán</a></li>
+        </ul>
+
+        <ul>
+            <h1>Quản lý hóa đơn</h1>
+            <li><a href="{{ url_for('addNewInvoice') }}">Lập hóa đơn</a></li>
+            <li><a href="{{ url_for('showAllInvoice') }}">Danh sách</a></li>
+        </ul>
+
+        <ul>
+            <h1>Quản lý chi tiết hóa đơn</h1>
+            <li><a href="{{ url_for('addNewInvoiceDetails') }}">Lập hóa đơn</a></li>
+            <li><a href="{{ url_for('showAllInvoiceDetails') }}">Danh sách</a></li>
+        </ul>
+    </div>
+
+    <script> 
+        const searchInput = document.getElementById("search-input");
+        const searchButton = document.getElementById("search-button");
+        const searchResultsContainer = document.createElement("div");
+
+        searchButton.parentNode.insertBefore(searchResultsContainer, searchButton.nextSibling);
+        searchResultsContainer.id = "searchResults"; 
+        searchResultsContainer.style.marginTop = "10px";
+        searchResultsContainer.style.border = "1px solid #ccc";
+        searchResultsContainer.style.padding = "10px";
+        searchResultsContainer.style.borderRadius = "5px";
+
+        searchButton.addEventListener("click", function (event) {
+            event.preventDefault(); // Ngăn form gửi yêu cầu HTTP mặc định
+            const query = searchInput.value.trim(); // Lấy giá trị và loại bỏ khoảng trắng thừa
+
+            if (query) {
+                fetch(`/search?q=${query}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        displayResults(data);
+                    })
+                    .catch(error => {
+                        console.error("Lỗi khi tìm kiếm:", error);
+                        searchResultsContainer.innerHTML = "<p style='color: red;'>Có lỗi xảy ra khi tìm kiếm.</p>";
+                    });
+            } else {
+                searchResultsContainer.innerHTML = "<p>Vui lòng nhập từ khóa tìm kiếm.</p>";
+            }
+        }); 
+
+        function displayResults(results) {
+            searchResultsContainer.innerHTML = ""; // Xóa kết quả cũ
+
+            if (results.length === 0) {
+                searchResultsContainer.innerHTML = "<p>Không tìm thấy sách nào phù hợp.</p>";
+                return;
+            }
+
+            const ul = document.createElement("ul");
+            results.forEach(book => {
+                const li = document.createElement("li");
+                li.innerHTML = `<strong>${book.book_name}</strong> - ${book.authors} (${book.publishing_year})<br>` +
+                                `Giá: ${book.cost}<br>` +
+                                `Số lượng: ${book.quantity}`;
+                ul.appendChild(li);
+            });
+            searchResultsContainer.appendChild(ul);
+        }
+    </script>
+</body>
+</html>

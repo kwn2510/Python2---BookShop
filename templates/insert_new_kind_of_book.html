@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Thêm Thể Loại Sách Mới</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='insert.css') }}">
+</head>
+<body>
+    <header>
+        <div class="auth-buttons">
+            <a href="/logout" class="btn">Đăng xuất</a>
+        </div>
+    </header>
+    <a href="{{ url_for('select') }}" class="back-link">← Quay lại</a>
+    <div class="container">
+        <h1 style="color: rgb(3, 29, 159);">Thêm Thể Loại Sách Mới</h1>
+        <form method="POST" action="{{ url_for('addNewKindOfBookCommit') }}">
+            <div>
+                <label for="id">Mã Thể Loại:</label>
+                <input type="number" id="id" name="id" min="1000" required>
+            </div><br>
+            <div>
+                <label for="name">Tên Thể Loại:</label>
+                <select id="name" name="name" required>
+                    <option value="" disabled selected>Chọn thể loại sách</option>
+                    <option value="Văn học">Văn học</option>
+                    <option value="Khoa học">Khoa học</option>
+                    <option value="Lịch sử">Lịch sử</option>
+                    <option value="Thiếu nhi">Thiếu nhi</option>
+                    <option value="Tiểu thuyết">Tiểu thuyết</option>
+                    <option value="Sách tham khảo">Sách tham khảo</option>
+                    <option value="Sách giáo khoa">Sách giáo khoa</option>
+                    <option value="Truyện tranh">Truyện tranh</option>
+                </select>
+            </div><br>
+            <div>
+                <label for="book_shelf_number">Số kệ:</label>
+                <input type="number" id="book_shelf_number" name="book_shelf_number" min="1" required>
+            </div><br><br>
+            <button type="submit">Thêm Thể Loại Sách</button>
+        </form>
+    </div>
+</body>
+</html>

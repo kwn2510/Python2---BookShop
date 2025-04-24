@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Danh Sách Chi Tiết Hóa Đơn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+<body>
+    <h1>Danh Sách Chi Tiết Hóa Đơn</h1>
+    <table border="1">
+        <tr>
+            <th>Mã Hóa Đơn</th>
+            <th>Tên Sách</th>
+            <th>Khách Hàng</th>
+            <th>Số Lượng</th>
+            <th>Giá Sách</th>
+            <th>Tổng Tiền</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+        {% for detail in invoice_details %}
+        <tr>
+            <td>{{ detail.invoice_id }}</td>
+            <td>{{ detail.book_name }}</td>
+            <td>{{ detail.customer_name }}</td>
+            <td>{{ detail.quantity }}</td>
+            <td>{{ detail.cost_book }}</td>
+            <td>{{ detail.quantity * detail.cost_book }}</td>
+            <td>
+                <a href="{{ url_for('edit_invoice_detail', invoice_id=detail.invoice_id, book_id=detail.book_id) }}">Sửa</a>
+            </td>
+            <td>
+                <a href="{{ url_for('delete_invoice_details', invoice_id=detail.invoice_id, book_id=detail.book_id) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa chi tiết hóa đơn này?');">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('select') }}">Quay lại</a>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lập Chi Tiết Hóa Đơn</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='insert.css') }}">
+    <script>
+        // Hàm tính tổng tiền
+        function calculateTotal() {
+            const costBook = parseFloat(document.getElementById("cost_book").value) || 0;
+            const quantity = parseInt(document.getElementById("quantity").value) || 0;
+            const total = costBook * quantity;
+            document.getElementById("total").value = total.toFixed(2);
+        }
+
+        // Hàm cập nhật giá sách khi chọn sách
+        function updateCostBook() {
+            const bookSelect = document.getElementById("book_id");
+            const selectedOption = bookSelect.options[bookSelect.selectedIndex];
+            const cost = selectedOption.getAttribute("data-cost");
+            document.getElementById("cost_book").value = cost || 0;
+            calculateTotal();
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="auth-buttons">
+            <a href="/logout" class="btn">Đăng xuất</a>
+        </div>
+    </header>
+    <a href="{{ url_for('select') }}" class="back-link">← Quay lại</a>
+    <div class="container">
+        <h1 style="color: rgb(3, 29, 159);">Lập Chi Tiết Hóa Đơn</h1>
+        <form method="POST" action="{{ url_for('addNewInvoiceDetailsCommit') }}">
+            <label for="invoice_id">Hóa Đơn:</label>
+            <select id="invoice_id" name="invoice_id" required>
+                <option value="" disabled selected>Chọn hóa đơn</option>
+                {% for invoice in invoices %}
+                    <option value="{{ invoice.invoice_id }}">{{ invoice.invoice_id }}</option>
+                {% endfor %}
+            </select><br><br>
+        
+            <label for="book_id">Tên Sách:</label>
+            <select id="book_id" name="book_id" onchange="updateCostBook()" required>
+                <option value="" disabled selected>Chọn sách</option>
+                {% for book in books %}
+                    <option value="{{ book.book_id }}" data-cost="{{ book.cost }}">{{ book.book_name }}</option>
+                {% endfor %}
+            </select><br><br>
+        
+            <label for="quantity">Số Lượng:</label>
+            <input type="number" id="quantity" name="quantity" oninput="calculateTotal()" required><br><br>
+        
+            <label for="cost_book">Giá Sách:</label>
+            <input type="number" id="cost_book" name="cost_book" step="0.01" readonly required><br><br>
+        
+            <label for="total">Tổng Tiền:</label>
+            <input type="number" id="total" name="total" step="0.01" readonly><br><br>
+        
+            <button type="submit">Thêm Chi Tiết</button>
+        </form>
+    </div>
+</body>
+</html>

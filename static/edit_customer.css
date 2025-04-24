@@ -1,0 +1,83 @@
+body {
+    font-family: sans-serif;
+    background-color: #ffffff; /* Màu xanh dương nhạt hơn một chút */
+    margin: 20px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #1976d2; /* Màu xanh dương đậm cho tiêu đề */
+    margin-bottom: 30px; /* Tăng khoảng cách dưới tiêu đề */
+}
+
+form {
+    background-color: #bbdefb; /* Màu xanh dương nhạt hơn form */
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Đổ bóng nhẹ hơn */
+    width: 500px; /* Tăng chiều rộng form */
+    max-width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #1e88e5; /* Màu xanh dương đậm vừa cho label */
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    width: calc(100% - 16px);
+    padding: 10px;
+    border: 1px solid #90caf9; /* Màu xanh dương nhạt viền input/select */
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="date"]:focus,
+select:focus {
+    outline: none;
+    border-color: #2978f6; /* Màu xanh dương sáng hơn khi focus */
+    box-shadow: 0 0 5px rgba(68, 107, 236, 0.5);
+}
+
+button[type="submit"] {
+    background-color: #29b6f6; /* Màu xanh dương sáng cho nút */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #03a9f4; /* Màu xanh dương sáng hơn khi hover */
+}
+
+a {
+    display: inline-block; /* Hiển thị trên cùng dòng với các phần tử khác nếu cần */
+    margin-top: 20px;
+    color: #1976d2; /* Màu xanh dương đậm cho link */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0d47a1; /* Màu xanh dương đậm nhất khi hover */
+    text-decoration: underline;
+}

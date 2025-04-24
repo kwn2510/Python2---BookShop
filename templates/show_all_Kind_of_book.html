@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thông tin Thể Loại Sách</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+</head>
+<body>
+    <h1>Thông Tin Thể Loại Sách</h1>
+    <table border="2">
+        <tr>
+            <th>Kind_of_book ID</th>
+            <th>Name</th>
+            <th>Book_shelf_number</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+        {% for kind_of_book in kind_of_books %}
+        <tr>
+            <td>{{ kind_of_book.id }}</td>
+            <td>{{ kind_of_book.name }}</td>
+            <td>{{ kind_of_book.book_shelf_number }}</td>
+            <td>
+                <a href="{{ url_for('edit_kind_of_book', id=kind_of_book.id) }}">Sửa</a>
+            </td>
+            <td>
+                <a href="{{ url_for('delete_kind_of_book', id=kind_of_book.id) }}">Xóa</a>
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{{ url_for('select') }}">Trang chủ</a>
+</body>
+</html>

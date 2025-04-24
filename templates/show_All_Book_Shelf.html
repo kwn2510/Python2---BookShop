@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit.css') }}">
+    <title>Thông tin Kệ Sách</title>
+</head>
+<body>
+    <a href="{{ url_for('select') }}">Quay lại</a>
+    <h1>Thông Tin Sách</h1>
+    <table border="2">
+        <tr>
+            <th>Number</th>
+            <th>Location</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
+        </tr>
+        {% for shelf in book_shelves %}
+        <tr>
+            <td>{{ shelf.number }}</td>
+            <td>{{ shelf.location }}</td>
+            <td>
+                <a href="{{ url_for('edit_book_shelf', number=shelf.number) }}">Sửa</a>
+            </td>
+            <td>
+                <a href="{{ url_for('delete_book_shelf', number=shelf.number) }}" onclick="return confirm('Bạn có chắc chắn muốn xóa kệ sách này?');">Xóa</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
